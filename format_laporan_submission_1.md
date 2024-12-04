@@ -157,7 +157,6 @@ Model gradient boosting yang sangat efisien.
 ### **Rekomendasi**
 - Untuk prediksi harga properti yang lebih akurat, **XGBoost** atau **Random Forest** adalah pilihan terbaik karena kedua model ini memberikan kinerja yang sangat baik.
 - Meskipun **Linear Regression** dan **Ridge Regression** bisa digunakan sebagai baseline, model tersebut tidak dapat memberikan hasil yang optimal untuk dataset ini.
-  
 Dengan menggunakan algoritma yang tepat dan melakukan **preprocessing** yang baik, kita dapat memprediksi harga properti secara lebih akurat, yang dapat membantu para pengembang properti, investor, dan pembeli untuk membuat keputusan yang lebih informasional.
 ---
 
