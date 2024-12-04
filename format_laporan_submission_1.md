@@ -28,7 +28,7 @@ Prediksi harga properti adalah aspek penting dalam pasar real estate yang memban
 ---
 
 ## **Data Understanding**
-Dataset yang digunakan berisi lebih dari 1.000 baris data mengenai properti, mencakup harga, luas bangunan, jumlah kamar, dan fasilitas lainnya. Dataset diunduh dari [Housing Price Prediction Dataset - Kaggle](https://www.kaggle.com/datasets/harishkumardatalab/housing-price-prediction).
+Dataset yang digunakan berisi lebih dari 500 baris data mengenai properti, mencakup harga, luas bangunan, jumlah kamar, dan fasilitas lainnya. Dataset diunduh dari [Housing Price Prediction Dataset - Kaggle](https://www.kaggle.com/datasets/harishkumardatalab/housing-price-prediction).
 
 ### **Deskripsi Fitur**
 | **Nama Fitur**       | **Deskripsi**                                      |
