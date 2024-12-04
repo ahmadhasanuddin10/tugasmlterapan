@@ -92,11 +92,6 @@ Untuk model Random Forest, kami melakukan tuning hyperparameter menggunakan Grid
 Parameter lainnya juga dioptimalkan untuk model lain menggunakan GridSearchCV.
 
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan.
-- Jika menggunakan satu algoritma pada solution statement, lakukan proses improvement terhadap model dengan hyperparameter tuning. **Jelaskan proses improvement yang dilakukan**.
-- Jika menggunakan dua atau lebih algoritma pada solution statement, maka pilih model terbaik sebagai solusi. **Jelaskan mengapa memilih model tersebut sebagai model terbaik**.
-
 ## Evaluation
 Evaluation
 Metrik yang Digunakan:
@@ -109,8 +104,7 @@ Decision Tree: R² = 0.441, MAPE = 20.45%
 SVR: R² = -0.029, MAPE = 34.56%
 Dari hasil ini, model Random Forest memberikan performa terbaik dengan R² tertinggi dan MAPE terendah dibandingkan dengan model lainnya
 
-##
-Conclusion
+##Conclusion
 Proyek ini berhasil membangun model prediksi harga properti dengan akurasi yang cukup baik menggunakan algoritma Random Forest. Dengan melakukan hyperparameter tuning, kami dapat meningkatkan performa model dan mengurangi kesalahan prediksi. Selanjutnya, model ini dapat diterapkan untuk membantu dalam pengambilan keputusan di pasar properti.
 **Rubrik/Kriteria Tambahan (Opsional)**: 
 - Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
