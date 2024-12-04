@@ -1,117 +1,110 @@
-# Prediksi Rumah - Ahmad Hasanuddin
 
-## Domain Proyek
+# **Prediksi Harga Properti - Ahmad Hasanuddin**
 
-Pada proyek ini, kami fokus pada prediksi harga properti. Prediksi harga rumah sangat penting dalam pasar real estate karena membantu calon pembeli, penjual, dan investor dalam mengambil keputusan yang tepat. Dengan menggunakan model machine learning, kita dapat memperkirakan harga properti berdasarkan berbagai faktor yang mempengaruhi pasar real estate, seperti luas bangunan, jumlah kamar tidur, fasilitas, dan lokasi.
+## **Domain Proyek**
+Prediksi harga properti adalah aspek penting dalam pasar real estate yang membantu berbagai pihak, termasuk pembeli, penjual, dan investor, dalam pengambilan keputusan yang tepat. Fluktuasi harga yang dipengaruhi oleh berbagai faktor seperti lokasi, fasilitas, dan luas bangunan sering kali sulit diprediksi secara manual. Oleh karena itu, penggunaan model machine learning menjadi solusi untuk menghasilkan prediksi yang akurat dan efisien.
 
-referensi : https://www.bi.go.id/id/publikasi/laporan/Documents/SHPR_Tw_I_2024.pdf
+**Referensi:**
+1. [DETERMINAN HARGA RUMAH DI INDONESIA](https://jurnal.uns.ac.id/dinamika/article/download/45934/28895)
+2. [Survei Harga Properti Residensial BI](https://www.bi.go.id/id/publikasi/laporan/Documents/SHPR_Tw_I_2024.pdf)
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
+---
 
-Masalah ini perlu diselesaikan karena harga properti sangat fluktuatif dan dapat dipengaruhi oleh banyak faktor yang sulit diprediksi dengan cara konvensional. Oleh karena itu, metode otomatis seperti machine learning dapat memberikan prediksi yang lebih akurat dan efisien.
-  
-  Format Referensi: [DETERMINAN HARGA RUMAH DI INDONESIA](https://jurnal.uns.ac.id/dinamika/article/download/45934/28895)
-
-## Business Understanding
-
-### Problem Statements
-
-1. Bagaimana cara memprediksi harga properti berdasarkan berbagai fitur seperti luas bangunan, jumlah kamar tidur, fasilitas, dan lokasi?
+## **Business Understanding**
+### **Problem Statements**
+1. Bagaimana memprediksi harga properti berdasarkan fitur seperti luas bangunan, jumlah kamar tidur, fasilitas, dan lokasi?
 2. Bagaimana meningkatkan akurasi model prediksi harga properti dengan menggunakan algoritma machine learning yang tepat?
 
-### Goals
+### **Goals**
+1. Menghasilkan model machine learning yang mampu memprediksi harga properti dengan akurasi tinggi.
+2. Mengoptimalkan kinerja model melalui teknik pemilihan fitur dan hyperparameter tuning.
 
-1. Membangun model yang dapat memprediksi harga properti dengan akurasi yang tinggi.
+### **Solution Statements**
+- **Model yang Digunakan:** 
+  Menggunakan algoritma seperti Random Forest Regressor, XGBoost, dan Linear Regression untuk memodelkan data.
+- **Optimalisasi:** 
+  Hyperparameter tuning dengan GridSearchCV untuk menemukan konfigurasi parameter terbaik, seperti `n_estimators` dan `max_depth`.
 
-2. Meningkatkan akurasi model melalui teknik pemilihan fitur dan tuning hyperparameter.
+---
 
+## **Data Understanding**
+Dataset yang digunakan berisi lebih dari 1.000 baris data mengenai properti, mencakup harga, luas bangunan, jumlah kamar, dan fasilitas lainnya. Dataset diunduh dari [Housing Price Prediction Dataset - Kaggle](https://www.kaggle.com/datasets/harishkumardatalab/housing-price-prediction).
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Kami akan menggunakan algoritma machine learning untuk mempelajari hubungan antara fitur-fitur properti dan harga properti.
-- Kami akan menggunakan berbagai algoritma seperti Random Forest, Ridge, dan XGBoost, serta mengoptimalkan hyperparameter untuk meningkatkan kinerja model.
+### **Deskripsi Fitur**
+| **Nama Fitur**       | **Deskripsi**                                      |
+|-----------------------|----------------------------------------------------|
+| `price`              | Harga properti (target variabel).                  |
+| `area`               | Luas bangunan dalam sqft.                          |
+| `bedrooms`           | Jumlah kamar tidur.                                |
+| `bathrooms`          | Jumlah kamar mandi.                                |
+| `stories`            | Jumlah lantai.                                     |
+| `mainroad`           | Properti di jalan utama (1 = Ya, 0 = Tidak).       |
+| `guestroom`          | Properti memiliki ruang tamu (1 = Ya, 0 = Tidak).  |
+| `basement`           | Properti memiliki ruang bawah tanah (1 = Ya, 0 = Tidak). |
+| `airconditioning`    | Properti memiliki pendingin udara (1 = Ya, 0 = Tidak). |
+| `parking`            | Jumlah tempat parkir.                              |
+| `prefarea`           | Properti di daerah preferensi (1 = Ya, 0 = Tidak). |
+| `furnishingstatus`   | Status furnitur (0 = Tidak Furnitur, 1 = Semi-Furnitur, 2 = Furnitur Lengkap). |
 
-    ### Solution statements
-    - Menggunakan algoritma Random Forest Regressor untuk memprediksi harga properti. Random Forest adalah model ensemble yang dapat menangani data yang kompleks dan memberikan hasil yang lebih baik dibandingkan dengan model linier sederhana.
-    - Melakukan hyperparameter tuning untuk meningkatkan akurasi model. Dengan menggunakan GridSearchCV, kami akan mengoptimalkan parameter seperti jumlah pohon, kedalaman pohon, dan ukuran maksimum fitur yang digunakan untuk pelatihan.
-## Data Understanding
-Dataset yang digunakan dalam proyek ini adalah dataset yang berisi informasi mengenai properti, termasuk harga, ukuran, jumlah kamar, dan fasilitas lainnya. Dataset ini diambil dari berbagai sumber di pasar real estate dan berisi lebih dari seribu baris data. Contoh: [Housing Price Prediction](https://www.kaggle.com/datasets/harishkumardatalab/housing-price-prediction).
+---
 
-Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
+## **Data Preparation**
+### **Tahapan:**
+1. **Encoding Variabel Kategorikal:**
+   - Variabel seperti `mainroad`, `guestroom`, dan `prefarea` dikonversi menjadi numerik menggunakan Label Encoding.
+2. **Menangani Missing Values:**
+   - Nilai yang hilang pada fitur numerik diimputasi dengan rata-rata, sedangkan fitur kategorikal menggunakan modus.
+3. **Menghapus Outlier:**
+   - Outlier di fitur `price` dan `area` diidentifikasi menggunakan IQR dan dihapus.
+4. **Feature Scaling:**
+   - Fitur numerik dinormalisasi menggunakan StandardScaler untuk menyamakan skala data.
 
-### Variabel-variabel pada dataset adalah sebagai berikut:
-Variabel-variabel dalam dataset ini adalah sebagai berikut:
-price: Harga properti (target variable).
-area: Luas bangunan (dalam kaki persegi).
-bedrooms: Jumlah kamar tidur.
-bathrooms: Jumlah kamar mandi.
-stories: Jumlah lantai pada rumah.
-mainroad: Apakah properti terletak di jalan utama (1 = Ya, 0 = Tidak).
-guestroom: Apakah properti memiliki ruang tamu (1 = Ya, 0 = Tidak).
-basement: Apakah properti memiliki ruang bawah tanah (1 = Ya, 0 = Tidak).
-hotwaterheating: Apakah properti memiliki pemanas air (1 = Ya, 0 = Tidak).
-airconditioning: Apakah properti dilengkapi dengan pendingin udara (1 = Ya, 0 = Tidak).
-parking: Jumlah tempat parkir.
-prefarea: Apakah properti terletak di daerah preferensi (1 = Ya, 0 = Tidak).
-furnishingstatus: Status furnitur properti (0 = Tidak Furnitur, 1 = Semi-Furnitur, 2 = Furnitur Lengkap).
+---
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data atau exploratory data analysis.
+## **Modeling**
+### **Algoritma yang Digunakan:**
+1. **Linear Regression:**
+   - Model dasar untuk memprediksi harga dengan hubungan linier.
+2. **Random Forest Regressor:**
+   - Model ensemble yang menggabungkan banyak pohon keputusan untuk prediksi yang stabil.
+3. **XGBoost:**
+   - Model boosting yang menggabungkan prediksi dari model lemah untuk menghasilkan prediksi yang kuat.
 
-## Data Preparation
-Pada tahap data preparation, kami melakukan beberapa tahapan berikut:
+### **Hyperparameter Tuning:**
+- Menggunakan GridSearchCV untuk:
+  - **Random Forest:** Menyetel `n_estimators`, `max_depth`, dan `min_samples_split`.
+  - **XGBoost:** Menyetel `learning_rate` dan `max_depth`.
 
-Mengonversi variabel kategorikal menjadi numerik menggunakan teknik Label Encoding pada kolom seperti mainroad, guestroom, basement, hotwaterheating, airconditioning, dan prefarea.
-Menangani nilai yang hilang dengan cara menghapus atau mengimputasi nilai yang hilang.
-Menghapus outlier pada kolom price, area, dan price_per_sqft untuk memastikan bahwa model tidak terganggu oleh data yang tidak representatif.
-Fitur normalisasi: Menggunakan StandardScaler untuk menormalkan fitur numerik agar semua fitur berada pada skala yang sama.
+---
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+## **Evaluation**
+### **Metrik Evaluasi:**
+1. **R² (Coefficient of Determination):**
+   - Mengukur proporsi variansi dalam target yang dapat dijelaskan oleh model.
+2. **MAPE (Mean Absolute Percentage Error):**
+   - Mengukur kesalahan rata-rata dalam persentase prediksi.
 
-## Modeling
-Pada tahap ini, kami mencoba beberapa model machine learning untuk menyelesaikan masalah prediksi harga properti:
+### **Hasil Evaluasi:**
+| **Model**             | **R²** | **MAPE** |
+|------------------------|--------|----------|
+| Random Forest          | 0.731  | 17.13%   |
+| XGBoost                | 0.647  | 19.39%   |
+| Decision Tree          | 0.441  | 20.45%   |
+| SVR                   | -0.029 | 34.56%   |
 
-Algoritma yang Digunakan:
-Linear Regression:
-Model sederhana yang memprediksi harga properti berdasarkan hubungan linier antara fitur-fitur input dan harga.
-Ridge Regression:
-Menggunakan regularisasi L2 untuk menghindari overfitting pada model.
-Lasso Regression:
-Menggunakan regularisasi L1 untuk mengurangi kompleksitas model dengan mengurangi bobot fitur yang kurang relevan.
-Random Forest Regressor:
-Model ensemble yang menggunakan banyak pohon keputusan untuk memberikan prediksi yang lebih stabil.
-Decision Tree Regressor:
-Model yang membagi data berdasarkan aturan if-else untuk memprediksi harga.
-SVR (Support Vector Regressor):
-Menggunakan prinsip margin dan kernel untuk memprediksi harga dengan menangani data yang tidak linier.
-XGBoost:
-Algoritma boosting yang menggabungkan beberapa model lemah untuk membuat prediksi yang lebih kuat dan akurat.
-Hyperparameter Tuning:
-Untuk model Random Forest, kami melakukan tuning hyperparameter menggunakan GridSearchCV untuk menemukan parameter terbaik seperti max_depth, min_samples_split, dan n_estimators.
-Parameter lainnya juga dioptimalkan untuk model lain menggunakan GridSearchCV.
+**Analisis:**
+- Model Random Forest menunjukkan kinerja terbaik dengan R² tertinggi dan MAPE terendah.
+- SVR tidak memberikan performa yang baik karena data tidak linier.
 
+---
 
-## Evaluation
-Evaluation
-Metrik yang Digunakan:
-R² (Coefficient of Determination): Mengukur sejauh mana model dapat menjelaskan variabilitas data target.
-MAPE (Mean Absolute Percentage Error): Mengukur rata-rata persentase kesalahan prediksi model.
-Hasil Evaluasi:
-Random Forest: R² = 0.731, MAPE = 17.13%
-XGBoost: R² = 0.647, MAPE = 19.39%
-Decision Tree: R² = 0.441, MAPE = 20.45%
-SVR: R² = -0.029, MAPE = 34.56%
-Dari hasil ini, model Random Forest memberikan performa terbaik dengan R² tertinggi dan MAPE terendah dibandingkan dengan model lainnya
+## **Kesimpulan**
+Model Random Forest terbukti menjadi solusi terbaik untuk prediksi harga properti. Model ini dapat membantu para pemangku kepentingan di pasar real estate dalam mengambil keputusan dengan lebih percaya diri. Hyperparameter tuning juga berhasil meningkatkan performa model.
 
-##Conclusion
-Proyek ini berhasil membangun model prediksi harga properti dengan akurasi yang cukup baik menggunakan algoritma Random Forest. Dengan melakukan hyperparameter tuning, kami dapat meningkatkan performa model dan mengurangi kesalahan prediksi. Selanjutnya, model ini dapat diterapkan untuk membantu dalam pengambilan keputusan di pasar properti.
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+Langkah berikutnya:
+1. Mengintegrasikan model ke dalam aplikasi untuk prediksi harga properti secara real-time.
+2. Mengeksplorasi lebih banyak fitur untuk meningkatkan akurasi model.
 
-**---Ini adalah bagian akhir laporan---**
+---
 
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
-
+_Laporan ini telah disusun untuk memenuhi standar dokumentasi proyek machine learning yang rapi dan informatif. Untuk pertanyaan atau saran, silakan menghubungi._ 😊
