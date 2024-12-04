@@ -139,17 +139,33 @@ Model gradient boosting yang sangat efisien.
 3. **SVR**: Model terburuk dengan **R² rendah (0.7285)** dan **MAPE tinggi**.  
 
 ### **Kesimpulan**
-- **XGBoost** memberikan hasil yang optimal untuk prediksi harga rumah.  
-- Model ini menjawab **problem statement** dengan akurasi tinggi, mampu menjelaskan hampir seluruh variansi harga rumah.  
-- Solusi ini berdampak positif pada **business understanding**, memberikan prediksi harga yang lebih akurat untuk pengambilan keputusan investasi properti.  
 
+1. **Prediksi Harga Properti**
+   Berdasarkan analisis dan pemodelan yang dilakukan, harga properti dapat diprediksi dengan cukup akurat menggunakan berbagai fitur, seperti **luas bangunan**, **jumlah kamar tidur**, **fasilitas** (seperti akses jalan, ruang tamu, basement, dll.), dan **lokasi** (termasuk keberadaan fasilitas seperti air conditioning dan furnitur). Dalam model yang dibangun, fitur-fitur ini diolah dan dipersiapkan dengan hati-hati melalui **encoding** untuk variabel kategorikal, **normalisasi** untuk data numerik, dan **penanganan outlier** untuk memastikan kualitas data.
+
+   - **Hubungan antara luas bangunan dan harga** menunjukkan korelasi positif yang kuat, di mana semakin besar luas properti, semakin tinggi harga jualnya.
+   - **Fasilitas** dan **lokasi** juga memberikan dampak signifikan pada harga properti, dengan faktor-faktor seperti ketersediaan ruang tamu, basement, dan status furnitur mempengaruhi harga rumah.
+
+2. **Peningkatan Akurasi Model**
+   Untuk meningkatkan akurasi prediksi harga properti, berbagai **algoritma machine learning** telah diterapkan. Dari hasil evaluasi, **XGBoost** dan **Random Forest** terbukti menjadi model yang paling akurat, dengan skor **R² tertinggi** (0.9692 untuk XGBoost dan 0.9686 untuk Random Forest), yang berarti model-model ini mampu menjelaskan hampir seluruh variansi data harga rumah.  
+   
+   - **XGBoost** menghasilkan performa terbaik dengan **MAPE terendah**, menunjukkan kesalahan prediksi yang paling kecil dibandingkan dengan model lainnya.
+   - **Random Forest** juga menunjukkan hasil yang sangat baik dengan **R² tinggi**, meskipun sedikit lebih rendah daripada XGBoost.
+
+   Sebaliknya, model-model seperti **SVR** dan **Linear Regression** memberikan hasil yang kurang memuaskan, dengan **R² rendah** dan **MAPE tinggi**, yang mengindikasikan bahwa model-model tersebut tidak cocok untuk dataset ini.
+
+### **Rekomendasi**
+- Untuk prediksi harga properti yang lebih akurat, **XGBoost** atau **Random Forest** adalah pilihan terbaik karena kedua model ini memberikan kinerja yang sangat baik.
+- Meskipun **Linear Regression** dan **Ridge Regression** bisa digunakan sebagai baseline, model tersebut tidak dapat memberikan hasil yang optimal untuk dataset ini.
+  
+Dengan menggunakan algoritma yang tepat dan melakukan **preprocessing** yang baik, kita dapat memprediksi harga properti secara lebih akurat, yang dapat membantu para pengembang properti, investor, dan pembeli untuk membuat keputusan yang lebih informasional.
 ---
 
 _Laporan ini telah disusun untuk memenuhi standar dokumentasi proyek machine learning yang rapi dan informatif. Untuk pertanyaan atau saran, silakan menghubungi._ 😊
 
 
 
-Berikut revisi dan penjelasan yang disesuaikan dengan masukan Anda:  
+___Semoga Tugas Di terima dengan Baik, mohon bimbingannya__
 
 
 
