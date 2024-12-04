@@ -16,8 +16,8 @@ Prediksi harga properti adalah aspek penting dalam pasar real estate yang memban
 2. Bagaimana meningkatkan akurasi model prediksi harga properti dengan menggunakan algoritma machine learning yang tepat?
 
 ### **Goals**
-1. Menghasilkan model machine learning yang mampu memprediksi harga properti dengan akurasi tinggi.
-2. Mengoptimalkan kinerja model melalui teknik pemilihan fitur dan hyperparameter tuning.
+1. Menghasilkan model machine learning yang mampu memprediksi harga properti berdasarkan fitur seperti luas bangunan, jumlah kamar tidur, fasilitas, dan lokasi?
+2. Menemukan akurasi model prediksi harga properti dengan menggunakan algoritma machine learning yang tepat dan baik.
 
 ### **Solution Statements**
 - **Model yang Digunakan:** 
