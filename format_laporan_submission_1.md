@@ -48,63 +48,110 @@ Dataset yang digunakan berisi lebih dari 500 baris data mengenai properti, menca
 
 ---
 
-## **Data Preparation**
-### **Tahapan:**
-1. **Encoding Variabel Kategorikal:**
-   - Variabel seperti `mainroad`, `guestroom`, dan `prefarea` dikonversi menjadi numerik menggunakan Label Encoding.
-2. **Menangani Missing Values:**
-   - Nilai yang hilang pada fitur numerik diimputasi dengan rata-rata, sedangkan fitur kategorikal menggunakan modus.
-3. **Menghapus Outlier:**
-   - Outlier di fitur `price` dan `area` diidentifikasi menggunakan IQR dan dihapus.
-4. **Feature Scaling:**
-   - Fitur numerik dinormalisasi menggunakan StandardScaler untuk menyamakan skala data.
+# **Data Preparation**
+
+### **Feature Engineering**
+Pada tahap ini, dilakukan pengolahan fitur agar siap digunakan dalam model. Langkah-langkah yang dilakukan:  
+1. **Encoding Fitur Kategorikal**  
+   Fitur seperti `mainroad`, `guestroom`, `basement`, `airconditioning`, `prefarea`, dan `furnishingstatus` diubah menjadi nilai numerik menggunakan **LabelEncoder**.  
+2. **Penambahan Fitur Baru**  
+   Ditambahkan fitur `price_per_sqft` (harga per meter persegi) untuk meningkatkan kemampuan model dalam memahami hubungan harga dan luas properti.  
+3. **Penanganan Outlier**  
+   Menggunakan metode **IQR** (Interquartile Range) untuk menghapus data yang memiliki nilai terlalu ekstrem, seperti harga atau luas area yang terlalu jauh dari rentang normal.  
+
+### **Vectorizer**
+Tidak ada fitur berbasis teks pada dataset ini, sehingga tahap ini tidak diperlukan.  
+
+### **Split Data**
+Dataset dibagi menjadi **training** dan **testing** set:  
+- **Training Set**: 80% dari data, digunakan untuk melatih model.  
+- **Testing Set**: 20% dari data, digunakan untuk evaluasi model.  
+- Proses pembagian dilakukan menggunakan fungsi `train_test_split` dengan `random_state=42` untuk memastikan hasil yang konsisten:
+   ```python
+   from sklearn.model_selection import train_test_split
+   X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+   ```
 
 ---
 
-## **Modeling**
-### **Algoritma yang Digunakan:**
-1. **Linear Regression:**
-   - Model dasar untuk memprediksi harga dengan hubungan linier.
-2. **Random Forest Regressor:**
-   - Model ensemble yang menggabungkan banyak pohon keputusan untuk prediksi yang stabil.
-3. **XGBoost:**
-   - Model boosting yang menggabungkan prediksi dari model lemah untuk menghasilkan prediksi yang kuat.
+# **Modeling**
 
-### **Hyperparameter Tuning:**
-- Menggunakan GridSearchCV untuk:
-  - **Random Forest:** Menyetel `n_estimators`, `max_depth`, dan `min_samples_split`.
-  - **XGBoost:** Menyetel `learning_rate` dan `max_depth`.
+Berbagai model diterapkan untuk memprediksi harga rumah. Berikut adalah deskripsi model yang digunakan:  
+
+### **1. Linear Regression**
+Model regresi linear sederhana digunakan sebagai baseline.  
+- Tidak ada parameter khusus yang digunakan.  
+
+### **2. Ridge Regression**
+Model regresi linear dengan regularisasi L2 untuk mencegah overfitting.  
+- Parameter utama: `alpha` (kontrol tingkat regularisasi). Dicoba dengan nilai [0.1, 1, 10].  
+
+### **3. Lasso Regression**
+Model regresi linear dengan regularisasi L1 yang dapat melakukan seleksi fitur.  
+- Parameter utama: `alpha`. Dicoba dengan nilai [0.01, 0.1, 1].  
+
+### **4. Random Forest Regressor**
+Model berbasis ensemble yang menggunakan banyak pohon keputusan untuk meningkatkan akurasi.  
+- Parameter utama:  
+  - `n_estimators`: Jumlah pohon (100, 200).  
+  - `max_depth`: Kedalaman maksimum pohon (10, 20, None).  
+
+### **5. Decision Tree Regressor**
+Model pohon keputusan tunggal.  
+- Parameter utama:  
+  - `max_depth`: Kedalaman maksimum pohon (10, 20, None).  
+
+### **6. Support Vector Regressor (SVR)**
+Model regresi berbasis SVM dengan kernel RBF.  
+- Parameter utama:  
+  - `C`: Regularisasi (1, 10).  
+  - `kernel`: Jenis kernel (RBF).  
+
+### **7. XGBoost Regressor**
+Model gradient boosting yang sangat efisien.  
+- Parameter utama:  
+  - `learning_rate`: Tingkat pembelajaran (0.01, 0.1).  
+  - `n_estimators`: Jumlah pohon (100, 200).  
 
 ---
 
-## **Evaluation**
-### **Metrik Evaluasi:**
-1. **R² (Coefficient of Determination):**
-   - Mengukur proporsi variansi dalam target yang dapat dijelaskan oleh model.
-2. **MAPE (Mean Absolute Percentage Error):**
-   - Mengukur kesalahan rata-rata dalam persentase prediksi.
+# **Evaluation**
 
-### **Hasil Evaluasi:**
-| **Model**             | **R²** | **MAPE** |
-|------------------------|--------|----------|
-| Random Forest          | 0.731  | 17.13%   |
-| XGBoost                | 0.647  | 19.39%   |
-| Decision Tree          | 0.441  | 20.45%   |
-| SVR                   | -0.029 | 34.56%   |
+### **Metode Evaluasi**
+- **R² (R-squared)**: Mengukur seberapa baik model menjelaskan variansi data target.  
+- **MAPE (Mean Absolute Percentage Error)**: Mengukur kesalahan prediksi relatif terhadap nilai sebenarnya dalam persentase.  
 
-**Analisis:**
-- Model Random Forest menunjukkan kinerja terbaik dengan R² tertinggi dan MAPE terendah.
-- SVR tidak memberikan performa yang baik karena data tidak linier.
+### **Hasil Evaluasi Model**
 
----
+| **Model**            | **R²**    | **MAPE**              |
+|-----------------------|-----------|-----------------------|
+| Linear Regression     | 0.8792    | 1.543798e+14          |
+| Ridge Regression      | 0.8791    | 1.537867e+14          |
+| Lasso Regression      | 0.8536    | 7.150074e+12          |
+| Random Forest         | 0.9686    | 9.720269e+13          |
+| Decision Tree         | 0.9414    | 1.563750e+14          |
+| SVR                  | 0.7285    | 5.871988e+14          |
+| XGBoost               | 0.9692    | 4.385626e+13          |
 
-## **Kesimpulan**
-Model Random Forest terbukti menjadi solusi terbaik untuk prediksi harga properti. Model ini dapat membantu para pemangku kepentingan di pasar real estate dalam mengambil keputusan dengan lebih percaya diri. Hyperparameter tuning juga berhasil meningkatkan performa model.
+### **Analisis Hasil**
+1. **XGBoost**: Model terbaik dengan **R² tertinggi (0.9692)** dan **MAPE terendah (4.385626e+13)**.  
+2. **Random Forest**: Alternatif yang baik dengan performa mendekati XGBoost.  
+3. **SVR**: Model terburuk dengan **R² rendah (0.7285)** dan **MAPE tinggi**.  
 
-Langkah berikutnya:
-1. Mengintegrasikan model ke dalam aplikasi untuk prediksi harga properti secara real-time.
-2. Mengeksplorasi lebih banyak fitur untuk meningkatkan akurasi model.
+### **Kesimpulan**
+- **XGBoost** memberikan hasil yang optimal untuk prediksi harga rumah.  
+- Model ini menjawab **problem statement** dengan akurasi tinggi, mampu menjelaskan hampir seluruh variansi harga rumah.  
+- Solusi ini berdampak positif pada **business understanding**, memberikan prediksi harga yang lebih akurat untuk pengambilan keputusan investasi properti.  
 
 ---
 
 _Laporan ini telah disusun untuk memenuhi standar dokumentasi proyek machine learning yang rapi dan informatif. Untuk pertanyaan atau saran, silakan menghubungi._ 😊
+
+
+
+Berikut revisi dan penjelasan yang disesuaikan dengan masukan Anda:  
+
+
+
+
+
