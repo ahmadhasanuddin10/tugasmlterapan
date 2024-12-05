@@ -2,7 +2,30 @@
 # **Prediksi Harga Properti - Ahmad Hasanuddin**
 
 ## **Domain Proyek**
-Prediksi harga properti adalah aspek penting dalam pasar real estate yang membantu berbagai pihak, termasuk pembeli, penjual, dan investor, dalam pengambilan keputusan yang tepat. Fluktuasi harga yang dipengaruhi oleh berbagai faktor seperti lokasi, fasilitas, dan luas bangunan sering kali sulit diprediksi secara manual. Oleh karena itu, penggunaan model machine learning menjadi solusi untuk menghasilkan prediksi yang akurat dan efisien.
+
+Prediksi harga properti merupakan salah satu tantangan utama dalam industri real estate. Harga properti sangat dipengaruhi oleh berbagai faktor, seperti lokasi, fasilitas, luas bangunan, dan kondisi pasar, yang sering kali bersifat dinamis dan sulit dipahami tanpa analisis yang tepat. Pengambilan keputusan berdasarkan intuisi atau pengalaman semata cenderung menghasilkan ketidakakuratan, yang dapat berdampak negatif pada pembeli, penjual, maupun investor.
+
+**Latar Belakang:**  
+1. Harga properti dipengaruhi oleh banyak variabel kompleks, termasuk faktor fisik (luas bangunan, jumlah kamar), fasilitas (parkir, AC, basement), dan preferensi lokasi (akses jalan utama, daerah premium).  
+2. Tren pasar real estate yang fluktuatif memerlukan pendekatan analisis yang lebih modern dan berbasis data untuk memprediksi nilai properti dengan akurat.  
+3. Keputusan yang buruk dalam membeli atau menjual properti dapat menyebabkan kerugian finansial yang signifikan.
+
+**Tujuan:**  
+Membangun sistem prediksi harga properti berbasis machine learning yang dapat membantu para pelaku pasar real estate dalam:  
+- Menentukan nilai properti yang wajar dan realistis.  
+- Mengoptimalkan strategi investasi berdasarkan data yang akurat.  
+
+**Permasalahan:**  
+1. Bagaimana memanfaatkan fitur-fitur properti (seperti luas bangunan, jumlah kamar, dan lokasi) untuk memprediksi harga properti dengan akurat?  
+2. Bagaimana meningkatkan akurasi prediksi dengan memilih algoritma machine learning yang tepat dan melakukan optimalisasi model?  
+
+**Dampak:**  
+- **Bagi Pembeli:** Membantu mereka memahami nilai properti yang diinginkan, sehingga dapat membuat keputusan pembelian yang lebih informatif.  
+- **Bagi Penjual:** Memberikan harga jual yang kompetitif dan realistis berdasarkan kondisi pasar.  
+- **Bagi Investor:** Mendukung strategi investasi yang berbasis data untuk memaksimalkan keuntungan.  
+
+**Solusi yang Diusulkan:**  
+Menerapkan algoritma machine learning, seperti Random Forest, XGBoost, dan Linear Regression, dengan optimalisasi parameter untuk meningkatkan akurasi prediksi. Model ini akan dirancang untuk memahami hubungan kompleks antar fitur dalam dataset properti dan menghasilkan prediksi harga yang akurat dan andal.
 
 **Referensi:**
 1. [DETERMINAN HARGA RUMAH DI INDONESIA](https://jurnal.uns.ac.id/dinamika/article/download/45934/28895)
@@ -166,6 +189,34 @@ _Laporan ini telah disusun untuk memenuhi standar dokumentasi proyek machine lea
 
 ___Semoga Tugas Di terima dengan Baik, mohon bimbingannya__
 
+
+
+
+Berikut adalah pembaruan untuk **Domain Proyek** dan **Business Understanding** agar lebih relevan dan terstruktur:
+
+---
+
+
+---
+
+## **Business Understanding**
+
+### **Problem Statements**
+1. Bagaimana memprediksi harga properti berdasarkan fitur seperti luas bangunan, jumlah kamar tidur, fasilitas, dan lokasi?  
+2. Bagaimana meningkatkan akurasi model prediksi harga properti dengan menggunakan algoritma machine learning yang tepat?  
+
+### **Goals**
+1. Menghasilkan model machine learning yang mampu memprediksi harga properti dengan akurat menggunakan fitur seperti luas bangunan, jumlah kamar tidur, fasilitas, dan lokasi.  
+2. Meningkatkan akurasi prediksi harga properti dengan menerapkan strategi optimalisasi model, seperti pemilihan algoritma yang sesuai dan hyperparameter tuning.  
+
+### **Solution Statements**
+- **Pemilihan Model:** Menggunakan algoritma seperti Random Forest Regressor, XGBoost, dan Linear Regression sebagai kandidat utama untuk memodelkan data properti.  
+- **Optimalisasi Model:** Melakukan hyperparameter tuning menggunakan metode seperti GridSearchCV untuk meningkatkan akurasi prediksi.  
+- **Validasi Model:** Mengevaluasi kinerja model dengan metrik seperti R² dan MAPE untuk memastikan akurasi prediksi yang optimal.  
+
+---
+
+Dengan pembaruan ini, **Domain Proyek** dan **Business Understanding** menjadi lebih menyeluruh, relevan, dan saling terhubung. **Goal kedua** sekarang berfokus pada peningkatan akurasi model, yang sesuai dengan problem statement kedua. 
 
 
 
