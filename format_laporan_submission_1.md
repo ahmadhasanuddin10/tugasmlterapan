@@ -51,10 +51,10 @@ Menerapkan algoritma machine learning, seperti Random Forest, XGBoost, dan Linea
 ## **Data Understanding**
 Dataset yang digunakan berisi lebih dari 500 baris data mengenai properti, mencakup harga, luas bangunan, jumlah kamar, dan fasilitas lainnya. Dataset diunduh dari [Housing Price Prediction Dataset - Kaggle](https://www.kaggle.com/datasets/harishkumardatalab/housing-price-prediction).
 
-| `Jumlah Data `              |  545 |
-| `Jumlah Kolom `              |  13|
-| `Missing Value`              | 0|
-| `Duplikat`              |  0|
+| `Jumlah Data`              |545|
+| `Jumlah Kolom`              |13|
+| `Missing Value`              |0|
+| `Duplikat`              |0|
 
 ### **Deskripsi Fitur**
 | **Nama Fitur**       | **Deskripsi**                                      |
