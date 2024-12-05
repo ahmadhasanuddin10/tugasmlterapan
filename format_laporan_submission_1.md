@@ -2,10 +2,8 @@
 # **Prediksi Harga Properti - Ahmad Hasanuddin**
 
 ## **Domain Proyek**
-
-Prediksi harga properti merupakan salah satu tantangan utama dalam industri real estate. Harga properti sangat dipengaruhi oleh berbagai faktor, seperti lokasi, fasilitas, luas bangunan, dan kondisi pasar, yang sering kali bersifat dinamis dan sulit dipahami tanpa analisis yang tepat. Pengambilan keputusan berdasarkan intuisi atau pengalaman semata cenderung menghasilkan ketidakakuratan, yang dapat berdampak negatif pada pembeli, penjual, maupun investor.
-
 **Latar Belakang:**  
+Prediksi harga properti merupakan salah satu tantangan utama dalam industri real estate. Harga properti sangat dipengaruhi oleh berbagai faktor, seperti lokasi, fasilitas, luas bangunan, dan kondisi pasar, yang sering kali bersifat dinamis dan sulit dipahami tanpa analisis yang tepat. Pengambilan keputusan berdasarkan intuisi atau pengalaman semata cenderung menghasilkan ketidakakuratan, yang dapat berdampak negatif pada pembeli, penjual, maupun investor. Ada beberapa permasalahan yang dihadapi:
 1. Harga properti dipengaruhi oleh banyak variabel kompleks, termasuk faktor fisik (luas bangunan, jumlah kamar), fasilitas (parkir, AC, basement), dan preferensi lokasi (akses jalan utama, daerah premium).  
 2. Tren pasar real estate yang fluktuatif memerlukan pendekatan analisis yang lebih modern dan berbasis data untuk memprediksi nilai properti dengan akurat.  
 3. Keputusan yang buruk dalam membeli atau menjual properti dapat menyebabkan kerugian finansial yang signifikan.
@@ -40,7 +38,7 @@ Menerapkan algoritma machine learning, seperti Random Forest, XGBoost, dan Linea
 
 ### **Goals**
 1. Menghasilkan model machine learning yang mampu memprediksi harga properti berdasarkan fitur seperti luas bangunan, jumlah kamar tidur, fasilitas, dan lokasi?
-2. Menemukan akurasi model prediksi harga properti dengan menggunakan algoritma machine learning yang tepat dan baik.
+2. Meningkatkan akurasi model prediksi harga properti dengan menggunakan algoritma machine learning yang tepa.
 
 ### **Solution Statements**
 - **Model yang Digunakan:** 
@@ -52,6 +50,8 @@ Menerapkan algoritma machine learning, seperti Random Forest, XGBoost, dan Linea
 
 ## **Data Understanding**
 Dataset yang digunakan berisi lebih dari 500 baris data mengenai properti, mencakup harga, luas bangunan, jumlah kamar, dan fasilitas lainnya. Dataset diunduh dari [Housing Price Prediction Dataset - Kaggle](https://www.kaggle.com/datasets/harishkumardatalab/housing-price-prediction).
+Jumlah Data  : 545
+Jumlah Kolom : 13
 
 ### **Deskripsi Fitur**
 | **Nama Fitur**       | **Deskripsi**                                      |
@@ -68,6 +68,7 @@ Dataset yang digunakan berisi lebih dari 500 baris data mengenai properti, menca
 | `parking`            | Jumlah tempat parkir.                              |
 | `prefarea`           | Properti di daerah preferensi (1 = Ya, 0 = Tidak). |
 | `furnishingstatus`   | Status furnitur (0 = Tidak Furnitur, 1 = Semi-Furnitur, 2 = Furnitur Lengkap). |
+| `hotwaterheating`   |  properti memiliki fasilitas pemanas air  (1 = Ya, 0 = Tidak). |
 
 ---
 
