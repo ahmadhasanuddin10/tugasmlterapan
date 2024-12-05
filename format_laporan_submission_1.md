@@ -196,33 +196,3 @@ ___Semoga Tugas Di terima dengan Baik, mohon bimbingannya__
 
 
 
-
-Berikut adalah pembaruan untuk **Domain Proyek** dan **Business Understanding** agar lebih relevan dan terstruktur:
-
----
-
-
----
-
-## **Business Understanding**
-
-### **Problem Statements**
-1. Bagaimana memprediksi harga properti berdasarkan fitur seperti luas bangunan, jumlah kamar tidur, fasilitas, dan lokasi?  
-2. Bagaimana meningkatkan akurasi model prediksi harga properti dengan menggunakan algoritma machine learning yang tepat?  
-
-### **Goals**
-1. Menghasilkan model machine learning yang mampu memprediksi harga properti dengan akurat menggunakan fitur seperti luas bangunan, jumlah kamar tidur, fasilitas, dan lokasi.  
-2. Meningkatkan akurasi prediksi harga properti dengan menerapkan strategi optimalisasi model, seperti pemilihan algoritma yang sesuai dan hyperparameter tuning.  
-
-### **Solution Statements**
-- **Pemilihan Model:** Menggunakan algoritma seperti Random Forest Regressor, XGBoost, dan Linear Regression sebagai kandidat utama untuk memodelkan data properti.  
-- **Optimalisasi Model:** Melakukan hyperparameter tuning menggunakan metode seperti GridSearchCV untuk meningkatkan akurasi prediksi.  
-- **Validasi Model:** Mengevaluasi kinerja model dengan metrik seperti R² dan MAPE untuk memastikan akurasi prediksi yang optimal.  
-
----
-
-Dengan pembaruan ini, **Domain Proyek** dan **Business Understanding** menjadi lebih menyeluruh, relevan, dan saling terhubung. **Goal kedua** sekarang berfokus pada peningkatan akurasi model, yang sesuai dengan problem statement kedua. 
-
-
-
-
