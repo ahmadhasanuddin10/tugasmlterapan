@@ -78,27 +78,111 @@ Dataset yang digunakan berisi lebih dari 500 baris data mengenai properti, menca
 
 # **Data Preparation**
 
-### **Feature Engineering**
-Pada tahap ini, dilakukan pengolahan fitur agar siap digunakan dalam model. Langkah-langkah yang dilakukan:  
-1. **Encoding Fitur Kategorikal**  
-   Fitur seperti `mainroad`, `guestroom`, `basement`, `airconditioning`, `prefarea`, dan `furnishingstatus` diubah menjadi nilai numerik menggunakan **LabelEncoder**.  
-2. **Penambahan Fitur Baru**  
-   Ditambahkan fitur `price_per_sqft` (harga per meter persegi) untuk meningkatkan kemampuan model dalam memahami hubungan harga dan luas properti.  
-3. **Penanganan Outlier**  
-   Menggunakan metode **IQR** (Interquartile Range) untuk menghapus data yang memiliki nilai terlalu ekstrem, seperti harga atau luas area yang terlalu jauh dari rentang normal.  
+---
 
-### **Vectorizer**
-Tidak ada fitur berbasis teks pada dataset ini, sehingga tahap ini tidak diperlukan.  
+### **1. Label Encoding untuk Variabel Kategorikal**
+Variabel kategorikal yang berupa nilai non-numerik (misalnya `'yes'`/`'no'` atau kategori lainnya) dikonversi menjadi nilai numerik dengan menggunakan `LabelEncoder`. Variabel-variabel yang diubah meliputi:  
+`['mainroad', 'guestroom', 'basement', 'hotwaterheating', 'airconditioning', 'prefarea', 'furnishingstatus']`.
 
-### **Split Data**
-Dataset dibagi menjadi **training** dan **testing** set:  
-- **Training Set**: 80% dari data, digunakan untuk melatih model.  
-- **Testing Set**: 20% dari data, digunakan untuk evaluasi model.  
-- Proses pembagian dilakukan menggunakan fungsi `train_test_split` dengan `random_state=42` untuk memastikan hasil yang konsisten:
-   ```python
-   from sklearn.model_selection import train_test_split
-   X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
-   ```
+Contoh hasil:  
+- `'yes'` → 1  
+- `'no'` → 0  
+
+Kode:  
+```python
+encoder = LabelEncoder()
+for col in label_cols:
+    df[col] = encoder.fit_transform(df[col])
+```
+
+---
+
+### **2. Normalisasi Kolom Numerik**
+Kolom numerik `'area'` dan `'price'` dinormalisasi menggunakan `MinMaxScaler` agar nilai-nilai berada dalam rentang [0, 1]. Ini penting untuk menyamakan skala data dan mencegah bias pada algoritma yang sensitif terhadap skala.
+
+Kode:  
+```python
+scaler = MinMaxScaler()
+df[num_cols] = scaler.fit_transform(df[num_cols])
+```
+
+---
+
+### **3. Penanganan Outliers dengan IQR**
+Untuk kolom `'price'`, `'area'`, dan `'price_per_sqft'`, data yang merupakan *outliers* (berada di luar rentang [Q1 - 1.5 * IQR, Q3 + 1.5 * IQR]) dihapus.  
+Metode IQR (Interquartile Range) membantu mengurangi pengaruh data ekstrem.
+
+Kode:  
+```python
+def remove_outliers(df, cols):
+    for col in cols:
+        Q1 = df[col].quantile(0.25)
+        Q3 = df[col].quantile(0.75)
+        IQR = Q3 - Q1
+        lower_bound = Q1 - 1.5 * IQR
+        upper_bound = Q3 + 1.5 * IQR
+        df = df[(df[col] >= lower_bound) & (df[col] <= upper_bound)]
+    return df
+
+outlier_cols = ['price', 'area', 'price_per_sqft']
+df = remove_outliers(df, outlier_cols)
+```
+
+---
+
+### **4. Penambahan Fitur Baru**
+Fitur `'price_per_sqft'` ditambahkan untuk memberikan informasi harga per satuan luas area (`price / area`). Fitur ini berguna untuk analisis lebih lanjut.
+
+Kode:  
+```python
+df['price_per_sqft'] = df['price'] / df['area']
+```
+
+---
+
+### **5. Penanganan Missing Values**
+Setelah encoding dan transformasi data, kolom yang masih memiliki nilai *missing* (`NaN`) diperiksa.  
+Nilai *missing* diisi dengan **0** untuk mencegah error selama pemrosesan lebih lanjut.
+
+Kode:  
+```python
+X.fillna(0, inplace=True)
+```
+
+---
+
+### **6. Standardisasi Data**
+Semua kolom dalam dataset dinormalisasi menggunakan `StandardScaler` sehingga memiliki mean = 0 dan standar deviasi = 1.  
+Langkah ini memastikan setiap fitur memiliki kontribusi yang seimbang selama pelatihan model.
+
+Kode:  
+```python
+scaler = StandardScaler()
+X_scaled = pd.DataFrame(scaler.fit_transform(X), columns=X.columns)
+```
+
+---
+
+### **7. Pembagian Data (Train-Test Split)**
+Dataset dibagi menjadi data *training* (80%) dan *testing* (20%) menggunakan `train_test_split`.  
+Parameter `random_state=42` memastikan pembagian yang konsisten saat dijalankan ulang.
+
+Kode:  
+```python
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+```
+
+---
+Proses *preprocessing* ini mencakup:
+1. **Encoding** variabel kategorikal.
+2. **Normalisasi** dan **standardisasi** fitur numerik.
+3. Penanganan **outliers** dan **missing values**.
+4. Penambahan fitur baru untuk analisis (*feature engineering*).
+5. Pembagian data untuk pelatihan dan pengujian model.
+
+
+
 
 ---
 
